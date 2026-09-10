@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>硬核指南-深度实用教程与硬核知识百科</title>
+    <meta name="description" content="硬核指南致力于提供深度、实用、系统化的教程与知识内容，涵盖技术、效率、生活方式等领域的硬核干货，帮助用户真正掌握技能与方法。">
+    <meta name="keywords" content="硬核指南,硬核知识,深度教程,实用指南,技术教程,效率方法,技能学习">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1a2b3c;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul, ol {
+            list-style: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 顶部信息栏 */
+        .topbar {
+            background: #0f172a;
+            color: #cbd5e1;
+            font-size: 13px;
+            padding: 8px 0;
+            letter-spacing: 0.3px;
+        }
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .topbar a {
+            color: #94a3b8;
+            margin-left: 18px;
+            transition: color 0.2s;
+        }
+        .topbar a:hover {
+            color: #38bdf8;
+        }
+
+        /* 主头部 */
+        .header-main {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .header-main .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 20px;
+            color: #38bdf8;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+        .logo-text p {
+            font-size: 12px;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .header-search {
+            flex: 1;
+            max-width: 420px;
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 30px;
+            padding: 6px 6px 6px 18px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
+        }
+        .header-search:focus-within {
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+            border-color: #38bdf8;
+        }
+        .header-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            color: #1e293b;
+        }
+        .header-search button {
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .header-search button:hover {
+            background: #1e293b;
+        }
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-outline {
+            border: 1px solid #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            background: white;
+            transition: all 0.2s;
+        }
+        .btn-outline:hover {
+            border-color: #0f172a;
+            background: #f8fafc;
+        }
+
+        /* 主导航 */
+        .main-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .main-nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            display: block;
+            padding: 14px 14px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #334155;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            color: #0284c7;
+            border-bottom-color: #0284c7;
+        }
+        .nav-links a.active {
+            color: #0f172a;
+            border-bottom-color: #0f172a;
+        }
+
+        /* Hero 首屏 */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+            color: white;
+            padding: 60px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 60%);
+        }
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h2 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+        }
+        .hero-content h2 span {
+            color: #38bdf8;
+        }
+        .hero-content p {
+            font-size: 17px;
+            color: #cbd5e1;
+            margin-bottom: 28px;
+            max-width: 520px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56,189,248,0.15);
+            border: 1px solid rgba(56,189,248,0.3);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #bae6fd;
+            margin-bottom: 20px;
+        }
+        .hero-badge::before {
+            content: '⚡';
+            font-size: 16px;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #38bdf8;
+            color: #0f172a;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: #7dd3fc;
+            transform: translateY(-1px);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            padding: 11px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover {
+            border-color: #38bdf8;
+            color: #38bdf8;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 35px;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-number {
+            font-size: 26px;
+            font-weight: 800;
+            color: white;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .hero-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-card h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero-card-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 14px;
+        }
+        .hero-card-list li:last-child {
+            border-bottom: none;
+        }
+        .hero-card-list .tag {
+            background: rgba(56,189,248,0.2);
+            color: #bae6fd;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .hero-card-list .title {
+            flex: 1;
+            color: #e2e8f0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 内容区 */
+        .content-section {
+            padding: 60px 0;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #38bdf8;
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            color: #64748b;
+            font-size: 15px;
+            max-width: 600px;
+        }
+        .section-link {
+            color: #0284c7;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.2s;
+        }
+        .section-link:hover {
+            gap: 8px;
+        }
+
+        /* 分类卡片 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.25s;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            border-color: #bae6fd;
+        }
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .category-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1e293b;
+        }
+        .category-card p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .category-meta {
+            font-size: 13px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 12px;
+        }
+
+        /* 热门文章网格 */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .article-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+        }
+        .article-thumb {
+            height: 180px;
+            background: linear-gradient(145deg, #e2e8f0, #f1f5f9);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #94a3b8;
+        }
+        .article-thumb .badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #0f172a;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .article-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .article-body h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0f172a;
+            line-height: 1.4;
+            transition: color 0.2s;
+        }
+        .article-card:hover .article-body h3 {
+            color: #0284c7;
+        }
+        .article-body p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .article-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 14px;
+        }
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 双栏布局 */
+        .dual-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            padding: 40px 0;
+        }
+        .main-list {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+        }
+        .main-list .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .main-list .list-header h2 {
+            font-size: 22px;
+            font-weight: 800;
+        }
+        .list-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid #f1f5f9;
+            align-items: flex-start;
+        }
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        .list-index {
+            font-size: 20px;
+            font-weight: 800;
+            color: #cbd5e1;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+        .list-item:nth-child(2) .list-index,
+        .list-item:nth-child(3) .list-index,
+        .list-item:nth-child(4) .list-index {
+            color: #38bdf8;
+        }
+        .list-content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .list-content p {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .list-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .list-tags a {
+            background: #f1f5f9;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #475569;
+            transition: background 0.2s;
+        }
+        .list-tags a:hover {
+            background: #bae6fd;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .widget {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+        }
+        .widget h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+            position: relative;
+        }
+        .widget h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #38bdf8;
+        }
+        .widget-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 14px;
+        }
+        .widget-list li:last-child {
+            border-bottom: none;
+        }
+        .widget-list .num {
+            background: #f1f5f9;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            flex-shrink: 0;
+        }
+        .widget-list li:nth-child(1) .num,
+        .widget-list li:nth-child(2) .num,
+        .widget-list li:nth-child(3) .num {
+            background: #0f172a;
+            color: white;
+        }
+        .widget-list a:hover {
+            color: #0284c7;
+        }
+        .widget-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .widget-tags a {
+            background: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #475569;
+            transition: all 0.2s;
+        }
+        .widget-tags a:hover {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* 新手入门 */
+        .guide-section {
+            background: white;
+            padding: 60px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .guide-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
+        }
+        .guide-card:hover {
+            border-color: #38bdf8;
+            background: #f0f9ff;
+        }
+        .guide-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .guide-step .step-icon {
+            width: 32px;
+            height: 32px;
+            background: #0f172a;
+            color: #38bdf8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .guide-step span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+        }
+        .guide-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .guide-card p {
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 60px 0;
+        }
+        .faq-list {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .faq-question {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-question::before {
+            content: 'Q';
+            background: #0f172a;
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .faq-answer {
+            margin-top: 12px;
+            padding-left: 38px;
+            font-size: 15px;
+            color: #475569;
+        }
+        .faq-answer::before {
+            content: 'A';
+            background: #38bdf8;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            margin-right: 6px;
+            vertical-align: 2px;
+        }
+
+        /* 底部 */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 48px 0 24px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        .footer-brand p {
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.6;
+            max-width: 320px;
+        }
+        .footer-links h4 {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            color: #38bdf8;
+        }
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+        }
+        .footer-bottom .social {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-bottom .social a:hover {
+            color: #38bdf8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 1024px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .article-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero .container {
+                grid-template-columns: 1fr;
+            }
+            .hero-card {
+                max-width: 100%;
+            }
+            .dual-section {
+                grid-template-columns: 1fr;
+            }
+            .guide-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-main .container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-search {
+                max-width: 100%;
+            }
+            .nav-links {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                width: 100%;
+            }
+            .nav-links a {
+                white-space: nowrap;
+            }
+            .hero-content h2 {
+                font-size: 32px;
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+    <!-- 顶部信息栏 -->
+    <div class="topbar">
+        <div class="container">
+            <div>⚡ 硬核指南，拒绝浅尝辄止</div>
+            <div>
+                <a href="#">关于我们</a>
+                <a href="#">投稿</a>
+                <a href="#">RSS</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主头部 -->
+    <header class="header-main">
+        <div class="container">
+            <div class="logo-area">
+                <div class="logo-icon">H</div>
+                <div class="logo-text">
+                    <h1>硬核指南</h1>
+                    <p>HARDCODE GUIDE</p>
+                </div>
+            </div>
+            <div class="header-search">
+                <input type="text" placeholder="搜索硬核教程、工具、方法...">
+                <button>搜索</button>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn-outline">登录</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主导航 -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">编程开发</a>
+                <a href="#">效率工具</a>
+                <a href="#">系统运维</a>
+                <a href="#">数码硬件</a>
+                <a href="#">职场进阶</a>
+                <a href="#">生活方式</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 首屏 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">硬核精选 · 每周更新</div>
+                <h2>真正的硬核，<br>从<span>底层原理</span>到<span>实战技巧</span></h2>
+                <p>我们拆解复杂技术、还原真实场景、提供可落地的解决方案。每一篇内容都经过深度研究与实践验证，不灌水、不搬运、不敷衍。</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn-primary">开始探索 →</a>
+                    <a href="#" class="btn-ghost">最新发布</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-label">深度教程</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40+</span>
+                        <span class="stat-label">技术方向</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30k</span>
+                        <span class="stat-label">社区成员</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h3>📌 今日硬核速览</h3>
+                <ul class="hero-card-list">
+                    <li><span class="tag">热门</span><span class="title">从零搭建个人知识管理系统</span></li>
+                    <li><span class="tag">新更</span><span class="title">Git 高级操作与内部原理</span></li>
+                    <li><span class="tag">精选</span><span class="title">Docker 容器化部署实战</span></li>
+                    <li><span class="tag">专题</span><span class="title">2025 最新终端工具链盘点</span></li>
+                    <li><span class="tag">指南</span><span class="title">如何写出高质量技术文档</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内容区域 -->
+    <main>
+        <!-- 分类导航 -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">硬核分类</h2>
+                        <p class="section-subtitle">系统化知识体系，从入门到精通</p>
+                    </div>
+                    <a href="#" class="section-link">查看全部 →</a>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="category-icon" style="background: #e0f2fe;">💻</div>
+                        <h3>编程开发</h3>
+                        <p>语言原理、框架源码、算法数据结构、设计模式深度解析</p>
+                        <div class="category-meta">
+                            <span>98 篇教程</span>
+                            <span>更新中</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon" style="background: #fce7f3;">🛠️</div>
+                        <h3>效率工具</h3>
+                        <p>终端、编辑器、自动化工作流，让工具真正为你所用</p>
+                        <div class="category-meta">
+                            <span>76 篇教程</span>
+                            <span>每周更新</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon" style="background: #fef3c7;">🐧</div>
+                        <h3>系统运维</h3>
+                        <p>Linux、Docker、K8s、监控体系、CI/CD 流水线</p>
+                        <div class="category-meta">
+                            <span>54 篇教程</span>
+                            <span>实战为主</span>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-icon" style="background: #dcfce7;">📡</div>
+                        <h3>数码硬件</h3>
+                        <p>装机、网络、外设评测与深度技术分析</p>
+                        <div class="category-meta">
+                            <span>42 篇教程</span>
+                            <span>深度测评</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门文章 -->
+        <section class="content-section" style="padding-top: 0;">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">🔥 本周硬核热文</h2>
+                        <p class="section-subtitle">社区用户收藏最多的深度内容</p>
+                    </div>
+                    <a href="#" class="section-link">更多热文 →</a>
+                </div>
+                <div class="article-grid">
+                    <article class="article-card">
+                        <div class="article-thumb" style="background: linear-gradient(145deg, #0f172a, #1e293b); color: #38bdf8;">
+                            🔧
+                            <span class="badge">硬核必读</span>
+                        </div>
+                        <div class="article-body">
+                            <h3>计算机网络原理：从物理层到应用层全解析</h3>
+                            <p>不背概念，用图解和实验带你真正理解网络协议栈，掌握排障思路。</p>
+                            <div class="article-meta">
+                                <span>📖 45 分钟</span>
+                                <span>💬 128 评论</span>
+                                <span>⭐ 2.3k 收藏</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-thumb" style="background: linear-gradient(145deg, #1e3a5f, #0c4a6e); color: #7dd3fc;">
+                            ⚙️
+                            <span class="badge">编辑器</span>
+                        </div>
+                        <div class="article-body">
+                            <h3>Vim 进阶指南：打造高效编辑环境</h3>
+                            <p>从基础操作到插件体系，重新定义你的文本编辑效率，告别鼠标依赖。</p>
+                            <div class="article-meta">
+                                <span>📖 32 分钟</span>
+                                <span>💬 86 评论</span>
+                                <span>⭐ 1.8k 收藏</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-thumb" style="background: linear-gradient(145deg, #164e63, #155e75); color: #a5f3fc;">
+                            🐳
+                            <span class="badge">容器</span>
+                        </div>
+                        <div class="article-body">
+                            <h3>Docker 底层技术解密：Namespace 与 Cgroups</h3>
+                            <p>容器为什么是轻量的？深入内核隔离机制，理解容器本质。</p>
+                            <div class="article-meta">
+                                <span>📖 28 分钟</span>
+                                <span>💬 64 评论</span>
+                                <span>⭐ 1.5k 收藏</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 双栏：最新文章 + 侧边栏 -->
+        <section class="dual-section">
+            <div class="container" style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px; padding: 0 24px;">
+                <div class="main-list">
+                    <div class="list-header">
+                        <h2>📝 最新硬核内容</h2>
+                        <a href="#" class="section-link">全部 →</a>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">1</div>
+                        <div class="list-content">
+                            <h3>PostgreSQL 查询优化实战：从慢SQL到毫秒响应</h3>
+                            <p>通过真实案例拆解执行计划、索引设计、参数调优，彻底解决性能瓶颈。</p>
+                            <div class="list-tags">
+                                <a href="#">数据库</a>
+                                <a href="#">性能优化</a>
+                                <a href="#">实战</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">2</div>
+                        <div class="list-content">
+                            <h3>Zsh 配置深度定制：打造你的终极终端</h3>
+                            <p>从插件管理到性能优化，手把手构建美观且高效的命令行环境。</p>
+                            <div class="list-tags">
+                                <a href="#">终端</a>
+                                <a href="#">Zsh</a>
+                                <a href="#">效率</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">3</div>
+                        <div class="list-content">
+                            <h3>算法刷题路线图：三个月从零到Offer</h3>
+                            <p>科学规划刷题顺序与策略，附高频题型总结与解题模板。</p>
+                            <div class="list-tags">
+                                <a href="#">算法</a>
+                                <a href="#">面试</a>
+                                <a href="#">学习路径</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">4</div>
+                        <div class="list-content">
+                            <h3>内网穿透完全指南：原理、工具与安全实践</h3>
+                            <p>详解常用方案对比，并给出安全合规的使用建议。</p>
+                            <div class="list-tags">
+                                <a href="#">网络</a>
+                                <a href="#">安全</a>
+                                <a href="#">工具</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">5</div>
+                        <div class="list-content">
+                            <h3>Obsidian 插件开发入门：从零编写你的第一款插件</h3>
+                            <p>掌握核心API，扩展你的知识管理工具，实现完全个性化。</p>
+                            <div class="list-tags">
+                                <a href="#">开发</a>
+                                <a href="#">Obsidian</a>
+                                <a href="#">知识管理</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-index">6</div>
+                        <div class="list-content">
+                            <h3>Kubernetes 存储机制详解：PV、PVC 与 StorageClass</h3>
+                            <p>理解有状态应用的数据持久化，从概念到实践全面梳理。</p>
+                            <div class="list-tags">
+                                <a href="#">K8s</a>
+                                <a href="#">存储</a>
+                                <a href="#">运维</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3>🏆 硬核榜 TOP10</h3>
+                        <ul class="widget-list">
+                            <li><span class="num">1</span><a href="#">操作系统原理图解：进程与线程</a></li>
+                            <li><span class="num">2</span><a href="#">Git 内部对象模型详解</a></li>
+                            <li><span class="num">3</span><a href="#">Nginx 配置从入门到精通</a></li>
+                            <li><span class="num">4</span><a href="#">Python 装饰器高级用法</a></li>
+                            <li><span class="num">5</span><a href="#">HTTP/2 与 HTTP/3 协议对比</a></li>
+                            <li><span class="num">6</span><a href="#">如何高效阅读源码</a></li>
+                            <li><span class="num">7</span><a href="#">SSH 隧道与端口转发实践</a></li>
+                            <li><span class="num">8</span><a href="#">正则表达式进阶修炼</a></li>
+                            <li><span class="num">9</span><a href="#">Redis 持久化机制深入</a></li>
+                            <li><span class="num">10</span><a href="#">TypeScript 类型体操入门</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3>🏷️ 热门标签</h3>
+                        <div class="widget-tags">
+                            <a href="#">Linux</a>
+                            <a href="#">Python</a>
+                            <a href="#">Docker</a>
+                            <a href="#">Git</a>
+                            <a href="#">Vim</a>
+                            <a href="#">算法</a>
+                            <a href="#">网络</a>
+                            <a href="#">数据库</a>
+                            <a href="#">K8s</a>
+                            <a href="#">终端</a>
+                            <a href="#">效率</a>
+                            <a href="#">源码</a>
+                            <a href="#">安全</a>
+                            <a href="#">自动化</a>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <h3>📬 订阅硬核周报</h3>
+                        <p style="font-size: 14px; color: #64748b; margin-bottom: 14px;">每周精选最硬核的教程与工具，直接送到你的邮箱。</p>
+                        <input type="email" placeholder="你的邮箱地址" style="width: 100%; padding: 10px 16px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; font-size: 14px;">
+                        <button style="width: 100%; background: #0f172a; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: 600; cursor: pointer;">立即订阅</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- 新手入门 -->
+        <section class="guide-section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">🚀 硬核入门路径</h2>
+                        <p class="section-subtitle">为新手准备的系统化学习路线</p>
+                    </div>
+                </div>
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <div class="guide-step"><span class="step-icon">1</span><span>夯实基础</span></div>
+                        <h3>计算机科学核心</h3>
+                        <p>从计算机组成原理、操作系统到数据结构，建立扎实的地基。推荐配合经典教材与在线课程同步学习。</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-step"><span class="step-icon">2</span><span>工具链精通</span></div>
+                        <h3>掌握高效工具</h3>
+                        <p>学习使用 Linux、Vim、Git 等开发者必备工具，让工具成为你的第二大脑，提升日常效率。</p>
+                    </div>
+                    <div class="guide-card">
+                        <div class="guide-step"><span class="step-icon">3</span><span>实战进阶</span></div>
+                        <h3>项目驱动学习</h3>
+                        <p>通过真实项目将知识串联起来，从构建一个小工具开始，逐步挑战更复杂的系统设计。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header" style="justify-content: center; text-align: center;">
+                    <div>
+                        <h2 class="section-title" style="margin: 0 auto;">❓ 常见问题</h2>
+                        <p class="section-subtitle" style="margin: 8px auto 0;">关于硬核指南，你可能想了解</p>
+                    </div>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">硬核指南的内容适合什么基础的人？</div>
+                        <div class="faq-answer">我们的内容覆盖面较广，既有面向初学者的系统教程，也有深入底层原理的进阶解析。每篇文章都会标注难度等级，你可以根据自身情况选择。建议先从入门路径开始，逐步建立知识体系。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">文章中的实践案例是否可靠？</div>
+                        <div class="faq-answer">所有实践类教程都会经过实际验证，并尽量提供可复现的环境与步骤。对于涉及版本迭代的内容，我们会注明适用版本。如果遇到问题，可以在评论区讨论，社区成员和作者会协助解答。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">如何向硬核指南投稿？</div>
+                        <div class="faq-answer">我们欢迎高质量的原创技术文章、经验总结或工具推荐。请通过站内“投稿”入口提交你的文章大纲或完整草稿，编辑团队会在一周内给予回复。内容需保证原创、准确、有深度。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">网站是否有社区交流群？</div>
+                        <div class="faq-answer">我们目前主要通过文章评论区、论坛版块和邮件订阅与读者互动。你可以在文章下方留言，或参与论坛中的专题讨论。未来会根据需求开放更多交流渠道。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo-area">
+                        <div class="logo-icon" style="background: #1e293b; color: #38bdf8;">H</div>
+                        <div class="logo-text" style="color: white;">
+                            <div style="font-size: 20px; font-weight: 800;">硬核指南</div>
+                            <div style="font-size: 12px; color: #94a3b8;">HARDCODE GUIDE</div>
+                        </div>
+                    </div>
+                    <p>专注于深度内容与实用技巧，帮助每一位求知者真正掌握硬核技能。拒绝浮躁，回归本质。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>内容分类</h4>
+                    <ul>
+                        <li><a href="#">编程开发</a></li>
+                        <li><a href="#">效率工具</a></li>
+                        <li><a href="#">系统运维</a></li>
+                        <li><a href="#">数码硬件</a></li>
+                        <li><a href="#">职场进阶</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">站点介绍</a></li>
+                        <li><a href="#">编辑团队</a></li>
+                        <li><a href="#">投稿指南</a></li>
+                        <li><a href="#">商务合作</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>资源</h4>
+                    <ul>
+                        <li><a href="#">学习路径</a></li>
+                        <li><a href="#">工具推荐</a></li>
+                        <li><a href="#">开源项目</a></li>
+                        <li><a href="#">书单推荐</a></li>
+                        <li><a href="#">网站地图</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2025 硬核指南 · 保留所有权利</span>
+                <div class="social">
+                    <a href="#">GitHub</a>
+                    <a href="#">RSS</a>
+                    <a href="#">邮件</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                                                     </html>
